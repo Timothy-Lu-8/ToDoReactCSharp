@@ -1,51 +1,40 @@
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './App.css';
 
 function App() {
-    const [forecasts, setForecasts] = useState();
+    const [tasks, setTasks] = useState();
 
-    useEffect(() => {
-        populateWeatherData();
-    }, []);
+    const navigate = useNavigate();
 
-    const contents = forecasts === undefined
-        ? <p><em>Loading... Please refresh once the ASP.NET backend has started. See <a href="https://aka.ms/jspsintegrationreact">https://aka.ms/jspsintegrationreact</a> for more details.</em></p>
+    const addBtnSubmit = () => {
+        navigate('/newform');
+    }
+
+    const contents = tasks === undefined
+        ? <p>No tasks added</p>
         : <table className="table table-striped" aria-labelledby="tableLabel">
             <thead>
                 <tr>
-                    <th>Date</th>
-                    <th>Temp. (C)</th>
-                    <th>Temp. (F)</th>
-                    <th>Summary</th>
                 </tr>
             </thead>
             <tbody>
-                {forecasts.map(forecast =>
-                    <tr key={forecast.date}>
-                        <td>{forecast.date}</td>
-                        <td>{forecast.temperatureC}</td>
-                        <td>{forecast.temperatureF}</td>
-                        <td>{forecast.summary}</td>
-                    </tr>
-                )}
             </tbody>
         </table>;
 
     return (
-        <div>
-            <h1 id="tableLabel">Weather forecast</h1>
-            <p>This component demonstrates fetching data from the server.</p>
-            {contents}
+        <div id="taskTableHeader">
+            <div className="flex">
+                <h1 id="tableLabel">To Do List</h1>
+                <div className="flex center">
+                    <button className="add-btn" onClick={ addBtnSubmit }>
+                        <span>Add</span>
+                    </button>
+                </div>
+            </div>
+            { contents }
         </div>
     );
-    
-    async function populateWeatherData() {
-        const response = await fetch('weatherforecast');
-        if (response.ok) {
-            const data = await response.json();
-            setForecasts(data);
-        }
-    }
 }
 
 export default App;

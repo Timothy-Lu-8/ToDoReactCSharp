@@ -5,7 +5,32 @@
     text-align: center;
 }
 
+#taskTableHeader {
+    width: 100%;
+}
+
 th, td {
     padding-left: 1rem;
     padding-right: 1rem;
+}
+
+.flex {
+    display: flex;
+}
+
+.add-btn {
+    border-radius: 20px;
+    background-color: orange;
+    height: 25%;
+    width: 75%;
+    margin-left: .5rem; 
+}
+
+.center {
+    align-items: center;
+    justify-items: center;
+}
+
+.auto-margins {
+    margin: auto;
 }
