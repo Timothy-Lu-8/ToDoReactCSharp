@@ -1,0 +1,7 @@
+<Solution>
+  <Project Path="todo.client/todo.client.esproj">
+    <Build />
+    <Deploy />
+  </Project>
+  <Project Path="ToDo.Server/ToDo.Server.csproj" />
+</Solution>
